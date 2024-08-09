@@ -14,11 +14,9 @@ const Houses = () => {
           const { id, image1, image2, image3, image4, cityName } = project;
           const images = [image1, image2, image3, image4];
           return (
-            <Link key={id} to={`/singleHouse/${id}`}>
-              <article>
-                <ImageCarousel images={images} cityName={cityName} />
-              </article>
-            </Link>
+            <article key={id}>
+              <ImageCarousel images={images} cityName={cityName} id={id} />
+            </article>
           );
         })}
       </div>
@@ -26,7 +24,7 @@ const Houses = () => {
   );
 };
 
-const ImageCarousel = ({ images, cityName }) => {
+const ImageCarousel = ({ images, cityName, id }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -43,11 +41,13 @@ const ImageCarousel = ({ images, cityName }) => {
 
   return (
     <div className="carousel relative w-full">
-      <img
-        src={images[currentIndex]}
-        className="w-full rounded-xl"
-        alt={`Slide ${currentIndex + 1} of ${cityName}`}
-      />
+      <Link to={`/singleHouse/${id}`}>
+        <img
+          src={images[currentIndex]}
+          className="w-full rounded-xl"
+          alt={`Slide ${currentIndex + 1} of ${cityName}`}
+        />
+      </Link>
       <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
         <button onClick={prevSlide} className="btn btn-circle">
           ❮
