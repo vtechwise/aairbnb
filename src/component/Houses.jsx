@@ -53,15 +53,21 @@ const ImageCarousel = ({ images, cityName, id }) => {
             alt={`Slide ${currentIndex + 1} of ${cityName}`}
           />
         </Link>
-        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-          <button onClick={prevSlide} className="btn btn-circle">
-            ❮
-          </button>
-          <button onClick={nextSlide} className="btn btn-circle">
-            ❯
-          </button>
-        </div>
+        {/* <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"> */}
+        <button
+          onClick={prevSlide}
+          className="btn btn-circle absolute left-5 top-[45%]  transform-none"
+        >
+          ❮
+        </button>
+        <button
+          onClick={nextSlide}
+          className="btn btn-circle absolute right-5 top-[45%]  transform-none"
+        >
+          ❯
+        </button>
       </div>
+      {/* </div> */}
     </section>
   );
 };
