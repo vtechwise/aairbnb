@@ -2,7 +2,7 @@ import { createClient } from "contentful";
 import Hero from "../component/Hero"
 import Navbar from "../component/Navbar"
 import Houses from "../component/Houses";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 
 
 export const loader = async () => {
@@ -15,8 +15,6 @@ export const loader = async () => {
     const response = await client.getEntries({
       content_type: "rentalHouses",
     });
-      console.log(response);
-      
     const projects = response.items.map((item) => {
       const {
         cityName,
@@ -51,7 +49,6 @@ export const loader = async () => {
         bookingContact,
       };
     });
-      console.log(projects);
       
     //  const projects= response.items
       return projects;
@@ -62,16 +59,24 @@ export const loader = async () => {
 };
 
 const Landing = () => {
-    const projects  = useLoaderData();
-    console.log(projects);
-    
+  const projects = useLoaderData();
+  const navigation = useNavigation()
+  const isLoading = navigation.state === 'loading'
+
+  if (isLoading) {
+    return <section className="h-[100vh] grid place-items-center">
+       <div className="loading loading-spinner"></div>
+     </section>
+   } 
 
   return (
+    <>
+    <Navbar />
       <div className="max-w-4xl mx-auto px-6">
-          <Navbar />
           <Hero />
           <Houses/>
     </div>
+    </>
   )
 }
 export default Landing

@@ -91,48 +91,50 @@ const SingleHouse = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto px-6 mb-[6rem]">
+    <>
       <Navbar />
-      <div className="mt-[6rem]">
-        {/* Carousel */}
-        <div className="carousel relative w-full mb-8">
-          <img
-            src={images[currentIndex]}
-            className="w-full rounded-xl object-cover"
-            alt={`Slide ${currentIndex + 1}`}
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <button onClick={prevSlide} className="btn btn-circle">
-              ❮
-            </button>
-            <button onClick={nextSlide} className="btn btn-circle">
-              ❯
-            </button>
+      <section className="max-w-4xl mx-auto px-6 mb-[6rem]">
+        <div className="mt-[6rem]">
+          {/* Carousel */}
+          <div className="carousel relative w-full mb-8">
+            <img
+              src={images[currentIndex]}
+              className="w-full rounded-xl object-cover"
+              alt={`Slide ${currentIndex + 1}`}
+            />
+            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+              <button onClick={prevSlide} className="btn btn-circle">
+                ❮
+              </button>
+              <button onClick={nextSlide} className="btn btn-circle">
+                ❯
+              </button>
+            </div>
+          </div>
+
+          {/* House Details */}
+          <div className="flex mt-[3rem] justify-between flex-col md:flex-row">
+            <h2 className="font-semibold text-xl">{cityName}</h2>
+            <p className="font-bold text-primary">${price} per night</p>
+          </div>
+          <p className="max-w-2xl mt-[1rem]">{description}</p>
+          <div>
+            <h2 className="capitalize text-xl font-bold my-4">What We Offer</h2>
+            <ul className="mt-[1rem] grid md:grid-cols-2 gap-y-4">
+              {whatThePlaceOffer.map((item, index) => (
+                <li key={index} className="font-semibold">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="grid gap-y-4 md:grid-cols-2 items-center mt-[3rem]">
+            <h3 className="text-lg">Proceed with booking, send an email to</h3>
+            <button className="btn btn-primary">{bookingContact}</button>
           </div>
         </div>
-
-        {/* House Details */}
-        <div className="flex mt-[3rem] justify-between flex-col md:flex-row">
-          <h2 className="font-semibold text-xl">{cityName}</h2>
-          <p className="font-bold text-primary">${price} per night</p>
-        </div>
-        <p className="max-w-2xl mt-[1rem]">{description}</p>
-        <div>
-          <h2 className="capitalize text-xl font-bold my-4">What We Offer</h2>
-          <ul className="mt-[1rem] grid md:grid-cols-2 gap-y-4">
-            {whatThePlaceOffer.map((item, index) => (
-              <li key={index} className="font-semibold">
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="grid gap-y-4 md:grid-cols-2 items-center mt-[3rem]">
-          <h3 className="text-lg">Proceed with booking, send an email to</h3>
-          <button className="btn btn-primary">{bookingContact}</button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
