@@ -90,6 +90,11 @@ const SingleHouse = () => {
     );
   };
 
+  const handleEmailClick = () => {
+    const mailtoLink = `mailto:katherineStobaugh30@gmail.com`;
+    window.location.href = mailtoLink;
+  };
+
   return (
     <>
       <Navbar />
@@ -130,7 +135,7 @@ const SingleHouse = () => {
           </div>
           <div className="grid gap-y-4 md:grid-cols-2 items-center mt-[3rem]">
             <h3 className="text-lg">Proceed with booking, send an email to</h3>
-            <button className="btn btn-primary">{bookingContact}</button>
+            <button className="btn btn-primary" onClick={handleEmailClick}>{bookingContact}</button>
           </div>
         </div>
       </section>
